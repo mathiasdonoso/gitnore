@@ -15,6 +15,9 @@
     "gitignore",
     "util"
   ],
+  "bin": {
+    "gitnore": "./index.js"
+  },
   "author": "Mathías Donoso <mathiasd88@gmail.com>",
   "license": "MIT",
   "bugs": {
