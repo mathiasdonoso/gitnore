@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const fs = require('fs')
-const filesFolder = './assets/files/'
+const filesFolder = `${__dirname}/../assets/files/`
 
 const createGitIgnore = (name) => {
   fs.createReadStream(`${filesFolder}${name}.gitignore`)
