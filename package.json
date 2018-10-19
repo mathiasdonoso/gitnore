@@ -1,6 +1,6 @@
 {
   "name": "gitnore",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Gitignore file creator",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,9 @@
     "gitignore",
     "util"
   ],
+  "bin": {
+    "gitnore": "./index.js"
+  },
   "author": "Mathías Donoso <mathiasd88@gmail.com>",
   "license": "MIT",
   "bugs": {
