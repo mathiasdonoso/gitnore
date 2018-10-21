@@ -14,7 +14,6 @@ const readFile = (folder, filename) => {
       if (err) reject(err)
       files.forEach(file => {
         const name = file.split('.')[0].toLowerCase()
-
         if (name === filename) {
           resolve(filename)
         }
@@ -36,9 +35,11 @@ const addToGitignore = (filename) => {
 }
 
 const addFileContent = (filename) => {
-  fs.readFile(`${globalsFolder}${filename}.gitignore`, (err, data) => {
-    if (err) console.error(err)
-    fs.appendFileSync('.gitignore', `\n${data}`)
+  return new Promise((resolve, reject) => {
+    fs.readFile(`${globalsFolder}${filename}.gitignore`, (err, data) => {
+      if (err) reject(err)
+      resolve(fs.appendFileSync('.gitignore', `\n${data}`))
+    })
   })
 }
 
