@@ -31,39 +31,59 @@ gitignore node --add=visualstudiocode,macos,jetbrains,sublimetext
   * ada
   * agda
   * android
+  * anjuta
+  * ansible
   * appceleratortitanium
   * appengine
+  * archives
   * archlinuxpackages
   * autotools
+  * backup
+  * bazaar
+  * bricxcc
   * c
   * c++
   * cakephp
+  * calabash
   * cfwheels
   * chefcookbook
   * clojuse
+  * cloud9
   * cmake
   * codeigniter
+  * codekit
   * commonlisp
   * composer
   * concrete5
   * coq
   * craftCMS
   * cuda
+  * cvs
   * d
   * dart
+  * darteditor
   * delphi
+  * diff
   * dm
+  * dreamweaver
+  * dropbox
   * drupal
   * eagle
+  * eclipse
+  * eiffelstudio
   * elisp
   * elixir
   * elm
+  * emacs
+  * ensime
   * episerver
   * erlang
+  * espresso
   * expressionengine
   * extjs
   * fancy
   * finale
+  * flexbuilder
   * forcedotcom
   * fortran
   * fuelphp
@@ -71,6 +91,7 @@ gitignore node --add=visualstudiocode,macos,jetbrains,sublimetext
   * gitbook
   * go
   * godot
+  * gpg
   * gradle
   * grails
   * gwt
@@ -79,32 +100,53 @@ gitignore node --add=visualstudiocode,macos,jetbrains,sublimetext
   * igorpro
   * java
   * jboss
+  * jdeveloper
   * jekyll
+  * jenv
+  * jetbrains
   * joomla
   * julia
+  * kate
+  * kdevelop4
   * kicard
   * kohana
   * kotlin
   * labview
   * laravel
+  * lazarus
   * leiningen
   * lemonstand
+  * libreoffice
   * lilypond
+  * linux
   * lithium
   * lua
+  * lyx
+  * macos
   * magento
+  * matlab
   * maven
+  * mercurial
   * mercury
   * metaprogrammingsystem
+  * microsoftoffice
+  * modelsim
+  * momentics
+  * monodevelop
   * nanoc
+  * netbeans
   * nim
+  * ninja
   * node
+  * notepaddpp
   * objective-c
   * ocalm
   * opa
   * opencart
   * oracleforms
+  * otto
   * packer
+  * patch
   * perl
   * perl6
   * phalcon
@@ -118,11 +160,14 @@ gitignore node --add=visualstudiocode,macos,jetbrains,sublimetext
   * qt
   * r
   * rails
+  * redcar
+  * redis
   * rhodesrhomobile
   * ros
   * ruby
   * rust
   * sass
+  * sbt
   * scala
   * scheme
   * scons
@@ -130,93 +175,45 @@ gitignore node --add=visualstudiocode,macos,jetbrains,sublimetext
   * sdcc
   * seamgen
   * sketchup
+  * slickedit
   * smalltalk
+  * stata
   * stella
+  * sublimetext
   * sugarcrm
+  * svn
   * swift
   * symfony
   * symphonycms
+  * synopsyscvs
+  * tags
   * terraform
   * tex
+  * textmate
   * textpattern
+  * tortoisegit
   * turbogears2
   * typo3
   * umbraco
   * unity
   * unrealengine
+  * vagrant
+  * vim
+  * virtualenv
   * visualstudio
+  * visualstudiocode
   * vvvv
   * walf
+  * webmethods
+  * windows
   * wordpress
+  * xcode
+  * xilinxise
   * xojo
   * yeoman
   * yii
   * zendframework
   * zephir
-
-
-- add
-  * anjuta
-  * ansible
-  * archives
-  * backup
-  * bazaar
-  * bricxcc
-  * calabash
-  * cloud9
-  * codekit
-  * cvs
-  * darteditor
-  * diff
-  * dreamweaver
-  * dropbox
-  * eclipse
-  * eiffelstudio
-  * emacs
-  * ensime
-  * espresso
-  * flexbuilder
-  * gpg
-  * jdeveloper
-  * jenv
-  * jetbrains
-  * kate
-  * kdevelop4
-  * lazarus
-  * libreoffice
-  * linux
-  * lyx
-  * macos
-  * matlab
-  * mercurial
-  * microsoftoffice
-  * modelsim
-  * momentics
-  * monodevelop
-  * netbeans
-  * ninja
-  * notepadpp
-  * otto
-  * patch
-  * redcar
-  * redis
-  * sbt
-  * slickedit
-  * stata
-  * sublimetext
-  * svn
-  * synopsysvcs
-  * tags
-  * textmate
-  * tortoisegit
-  * vagrant
-  * vim
-  * virtualenv
-  * visualstudiocode
-  * webmethods
-  * windows
-  * xcode
-  * xilinxise
 
 ## Contributing
 

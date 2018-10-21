@@ -1,7 +1,12 @@
 #! /usr/bin/env node
 const fs = require('fs')
 const filesFolder = `${__dirname}/../assets/files/`
-const globalsFolder = `${__dirname}/../assets/globals/`
+
+const createFile = (filename) => {
+  readFile(filesFolder, filename)
+    .then(file => createGitIgnore(file))
+    .catch(err => console.error(err))
+}
 
 const createGitIgnore = (filename) => {
   fs.createReadStream(`${filesFolder}${filename}.gitignore`)
@@ -22,21 +27,15 @@ const readFile = (folder, filename) => {
   })
 }
 
-const createFile = (filename) => {
-  readFile(filesFolder, filename)
-    .then(file => createGitIgnore(file))
-    .catch(err => console.error(err))
-}
-
 const addToGitignore = (filename) => {
-  readFile(globalsFolder, filename)
+  readFile(filesFolder, filename)
     .then(file => addFileContent(file))
     .catch(err => console.error(err))
 }
 
 const addFileContent = (filename) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(`${globalsFolder}${filename}.gitignore`, (err, data) => {
+    fs.readFile(`${filesFolder}${filename}.gitignore`, (err, data) => {
       if (err) reject(err)
       resolve(fs.appendFileSync('.gitignore', `\n${data}`))
     })
