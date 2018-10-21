@@ -25,13 +25,13 @@ const readFile = (folder, filename) => {
 
 const createFile = (filename) => {
   readFile(filesFolder, filename)
-    .then(filename => createGitIgnore(filename))
+    .then(file => createGitIgnore(file))
     .catch(err => console.error(err))
 }
 
 const addToGitignore = (filename) => {
   readFile(globalsFolder, filename)
-    .then(filename => addFileContent(filename))
+    .then(file => addFileContent(file))
     .catch(err => console.error(err))
 }
 
