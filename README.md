@@ -1,6 +1,6 @@
 # Gitnore
 
-One Paragraph of project description goes here
+A simple .gitognore file creator.
 
 ## Getting Started
 
