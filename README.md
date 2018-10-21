@@ -1,6 +1,6 @@
 # Gitnore
 
-A simple .gitognore file creator.
+A simple .gitignore file creator.
 
 ## Getting Started
 
