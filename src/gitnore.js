@@ -8,30 +8,31 @@ const createGitIgnore = (filename) => {
     .pipe(fs.createWriteStream('.gitignore'))
 }
 
-const createFile = (filename) => {
-  fs.readdir(filesFolder, (err, files) => {
-    if (err) console.error(err)
-    files.forEach(file => {
-      const name = file.split('.')[0].toLowerCase()
+const readFile = (folder, filename) => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(folder, (err, files) => {
+      if (err) reject(err)
+      files.forEach(file => {
+        const name = file.split('.')[0].toLowerCase()
 
-      if (name === filename) {
-        createGitIgnore(name)
-      }
+        if (name === filename) {
+          resolve(filename)
+        }
+      })
     })
   })
 }
 
-const addToGitignore = (filename) => {
-  fs.readdir(globalsFolder, (err, files) => {
-    if (err) console.error(err)
-    files.forEach(file => {
-      const name = file.split('.')[0].toLowerCase()
+const createFile = (filename) => {
+  readFile(filesFolder, filename)
+    .then(filename => createGitIgnore(filename))
+    .catch(err => console.error(err))
+}
 
-      if (name === filename) {
-        addFileContent(name)
-      }
-    })
-  })
+const addToGitignore = (filename) => {
+  readFile(globalsFolder, filename)
+    .then(filename => addFileContent(filename))
+    .catch(err => console.error(err))
 }
 
 const addFileContent = (filename) => {
