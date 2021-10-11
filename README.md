@@ -25,13 +25,13 @@ gitnore node visualstudio
 or multiple configurations:
 
 ```
-gitignore node visualstudio macos jetbrains
+gitnore node visualstudio macos jetbrains
 ```
 
 You can also use it with npx without instaling it locally:
 
 ```
-npx gitignore node visualstudio macos jetbrains
+npx gitnore node visualstudio macos jetbrains
 ```
 
 ### Configuration supported
