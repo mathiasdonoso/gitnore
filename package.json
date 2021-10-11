@@ -1,11 +1,9 @@
 {
   "name": "gitnore",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Gitignore file creator",
   "main": "index.js",
-  "scripts": {
-    "linter": "./node_modules/.bin/eslint src/ test/"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mathiasdonoso/gitnore.git"
@@ -24,15 +22,9 @@
     "url": "https://github.com/mathiasdonoso/gitnore/issues"
   },
   "homepage": "https://github.com/mathiasdonoso/gitnore#readme",
-  "devDependencies": {
-    "eslint": "^5.7.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "yargs": "^12.0.2"
+    "chalk": "^4.1.2",
+    "yargs": "^17.2.1"
   }
 }
