@@ -1,7 +1,8 @@
 #! /usr/bin/env node
 const fs = require("fs");
+const path = require("path");
 const chalk = require("chalk");
-const filesFolder = `${__dirname}/../assets/files/`;
+const filesFolder = path.join(__dirname, "../assets/files/");
 
 const log = console.log;
 
