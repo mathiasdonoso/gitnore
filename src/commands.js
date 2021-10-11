@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 const yargs = require("yargs");
+const chalk = require("chalk");
 const gitnore = require("./gitnore");
+
+const log = console.log;
 
 const argv = yargs
   .help()
@@ -14,4 +17,6 @@ if (argv._[0]) {
   argv._.forEach((arg) => {
     gitnore.addToGitignore(arg.toLowerCase());
   });
+
+  log(chalk.green(".gitignore file created."));
 }
