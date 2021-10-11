@@ -6,71 +6,86 @@ const filesFolder = path.join(__dirname, "../assets/files/");
 
 const log = console.log;
 
-const createFileForParam = (filename) => {
-  if (!filename) {
-    createEmptyGitIgnoreFile();
+const tempGitignoreFileName = `${new Date().getTime()}.gitignore`;
+
+const readFile = (folder, filename) => {
+  const files = fs.readdirSync(folder);
+
+  let fileFound = false;
+
+  files.forEach((file) => {
+    const name = file.split(".")[0].toLowerCase();
+    if (name === filename) {
+      fileFound = true;
+    }
+  });
+
+  if (!fileFound) {
+    throw new Error(
+      `There is no gitignore file available for "${filename}", checkout the available options at https://github.com/mathiasdonoso/gitnore#readme`
+    );
   } else {
-    readFile(filesFolder, filename)
-      .then((file) => createGitIgnore(file))
-      .catch((err) => console.error(chalk.red(err)));
+    return filename;
   }
 };
 
-const createEmptyGitIgnoreFile = () => {
-  fs.createWriteStream(".gitignore");
-};
-
-const createGitIgnore = (filename) => {
-  fs.createReadStream(`${filesFolder}${filename}.gitignore`).pipe(
-    fs.createWriteStream(".gitignore")
-  );
-};
-
-const readFile = (folder, filename) => {
-  return new Promise((resolve, reject) => {
-    fs.readdir(folder, (err, files) => {
-      if (err) {
-        reject(err);
-      }
-      let fileFound = false;
-
-      files.forEach((file) => {
-        const name = file.split(".")[0].toLowerCase();
-        if (name === filename) {
-          fileFound = true;
-          resolve(filename);
-        }
-      });
-
-      if (!fileFound) {
-        log(
-          chalk.red(
-            `There is no gitignore file available for "${filename}", checkout the available options at https://github.com/mathiasdonoso/gitnore#readme`
-          )
-        );
-      }
-    });
-  });
-};
-
 const addToGitignore = (filename) => {
-  readFile(filesFolder, filename)
-    .then((file) => addFileContent(file))
-    .catch((err) => console.error(chalk.red(err)));
+  filename = filename.toLowerCase();
+
+  const file = readFile(filesFolder, filename);
+
+  if (file) {
+    addFileContent(file);
+  }
 };
 
 const addFileContent = (filename) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(`${filesFolder}${filename}.gitignore`, async (err, data) => {
-      if (err) {
-        reject(err);
-      }
-      await resolve(fs.appendFileSync(".gitignore", `\n${data}`));
-    });
+  const data = fs.readFileSync(`${filesFolder}${filename}.gitignore`);
+
+  fs.appendFileSync(tempGitignoreFileName, `\n${data}`);
+};
+
+const createGitignoreFile = () => {
+  fs.createWriteStream(tempGitignoreFileName);
+};
+
+const writeGitignoreFile = (args) => {
+  args.forEach((file) => {
+    addToGitignore(file);
   });
 };
 
+replaceGitignoreTempFile = () => {
+  fs.renameSync(tempGitignoreFileName, ".gitignore");
+};
+
+const clear = () => {
+  fs.unlinkSync(tempGitignoreFileName);
+};
+
+const init = (args) => {
+  if (args.length > 0) {
+    try {
+      createGitignoreFile();
+
+      writeGitignoreFile(args);
+
+      replaceGitignoreTempFile();
+
+      log(chalk.green(".gitignore file created successfully"));
+    } catch (error) {
+      clear();
+      log(chalk.red(error));
+    }
+  } else {
+    log(
+      chalk.yellow(
+        "You need to specify which gitignore file want to be created. checkout the available options at https://github.com/mathiasdonoso/gitnore#readme"
+      )
+    );
+  }
+};
+
 module.exports = {
-  createFileForParam,
-  addToGitignore,
+  init,
 };
