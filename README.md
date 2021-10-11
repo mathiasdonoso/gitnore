@@ -28,12 +28,6 @@ or multiple configurations:
 gitnore node visualstudio macos jetbrains
 ```
 
-You can also use it with npx without instaling it locally:
-
-```
-npx gitnore node visualstudio macos jetbrains
-```
-
 ### Configuration supported
 
 - gitnore
