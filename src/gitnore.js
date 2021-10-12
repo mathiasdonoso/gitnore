@@ -44,9 +44,7 @@ const init = (args) => {
   if (args.length > 0) {
     try {
       createGitignoreFile();
-
       writeGitignoreFile(args);
-
       replaceGitignoreTempFile();
 
       log(chalk.green(".gitignore file created successfully"));
