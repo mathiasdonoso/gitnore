@@ -8,41 +8,18 @@ const log = console.log;
 
 const tempGitignoreFileName = `${new Date().getTime()}.gitignore`;
 
-const readFile = (folder, filename) => {
-  const files = fs.readdirSync(folder);
-
-  let fileFound = false;
-
-  files.forEach((file) => {
-    const name = file.split(".")[0].toLowerCase();
-    if (name === filename) {
-      fileFound = true;
-    }
-  });
-
-  if (!fileFound) {
-    throw new Error(
-      `There is no gitignore file available for "${filename}", checkout the available options at https://github.com/mathiasdonoso/gitnore#readme`
-    );
-  } else {
-    return filename;
-  }
-};
-
 const addToGitignore = (filename) => {
   filename = filename.toLowerCase();
 
-  const file = readFile(filesFolder, filename);
+  try {
+    const data = fs.readFileSync(`${filesFolder}${filename}.gitignore`);
 
-  if (file) {
-    addFileContent(file);
+    fs.appendFileSync(tempGitignoreFileName, `\n${data}`);
+  } catch (error) {
+    throw new Error(
+      `There is no gitignore file available for "${filename}", checkout the available options at https://github.com/mathiasdonoso/gitnore#readme`
+    );
   }
-};
-
-const addFileContent = (filename) => {
-  const data = fs.readFileSync(`${filesFolder}${filename}.gitignore`);
-
-  fs.appendFileSync(tempGitignoreFileName, `\n${data}`);
 };
 
 const createGitignoreFile = () => {
@@ -55,7 +32,7 @@ const writeGitignoreFile = (args) => {
   });
 };
 
-replaceGitignoreTempFile = () => {
+const replaceGitignoreTempFile = () => {
   fs.renameSync(tempGitignoreFileName, ".gitignore");
 };
 
