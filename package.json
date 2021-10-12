@@ -1,6 +1,6 @@
 {
   "name": "gitnore",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Gitignore file creator",
   "main": "index.js",
   "scripts": {},
