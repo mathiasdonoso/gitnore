@@ -4,21 +4,20 @@ A simple .gitignore file creator.
 
 ## Usage
 
-To add a .gitignore file for python:
+To add a .gitignore file for node:
 
 ```
-npx gitnore python
+npx gitnore node
 ```
 
 or multiple configurations:
 
 ```
-npx gitnore python visualstudiocode macos
+npx gitnore node visualstudiocode macos
 ```
 
 ### Configuration supported
 
-- gitnore
 - actionscript
 - ada
 - agda

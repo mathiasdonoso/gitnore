@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
-const filesFolder = path.join(__dirname, "../assets/files/");
+const filesFolder = path.join(__dirname, "../assets/gitignorefiles/");
 
 const log = console.log;
 
