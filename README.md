@@ -13,7 +13,7 @@ npx gitnore node
 or multiple configurations:
 
 ```
-npx gitnore node visualstudiocode macos
+npx gitnore node vscode macos
 ```
 
 ### Configuration supported
@@ -193,7 +193,7 @@ npx gitnore node visualstudiocode macos
 - vim
 - virtualenv
 - visualstudio
-- visualstudiocode
+- visualstudiocode (alias: vscode)
 - vvvv
 - walf
 - webmethods

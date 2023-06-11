@@ -1,7 +1,7 @@
 {
   "name": "gitnore",
-  "version": "1.1.2",
-  "description": "Gitignore file creator",
+  "version": "1.1.3",
+  "description": ".gitignore file generator",
   "main": "index.js",
   "scripts": {},
   "repository": {
@@ -11,6 +11,7 @@
   "keywords": [
     "git",
     "gitignore",
+    "generator",
     "util"
   ],
   "bin": {
