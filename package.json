@@ -16,7 +16,7 @@
     "util"
   ],
   "bin": {
-    "gitnore": "./index.js"
+    "gitnore": "index.js"
   },
   "author": "Mathías Donoso <mathiasd88@gmail.com>",
   "license": "MIT",
