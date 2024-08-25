@@ -19,12 +19,16 @@ async function init(args) {
     let text = await getContentFor(file);
 
     if (text !== '') {
+      content += `${text}\n`;
       console.info(`Obtained .gitignore info for ${file}.`)
     } else {
-      console.warn(`Couldn't found .gitignore info for ${file} in https://github.com/github/gitignore`)
+      console.warn(`Couldn't found .gitignore info for ${file}. The filename must match the one located in https://github.com/github/gitignore`)
     }
+  }
 
-    content += `${text}\n`;
+  if (content === '') {
+    console.warn(`Couldn't create an empty .gitignore file.`)
+    return
   }
 
   const writeStream = createWriteStream(GIT_IGNORE_FILE_NAME, { encoding: 'utf8' });
