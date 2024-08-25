@@ -60,11 +60,9 @@ const URLS = [
   * @returns {Promise<string>}
   */
 async function getContentFor(filename) {
-  const modifiedFilename = filename.charAt(0).toUpperCase() + filename.slice(1);
-
   try {
     for (let baseUrl of URLS) {
-      const endpoint = `${baseUrl}/${modifiedFilename}.gitignore`;
+      const endpoint = `${baseUrl}/${filename}.gitignore`;
       const response = await fetch(endpoint);
       if (response.status !== 200) {
         continue;
