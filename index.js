@@ -1,2 +1,7 @@
 #! /usr/bin/env node
-require('./src/commands')
+
+import gitnore from './src/gitnore.js';
+
+const values = process.argv.slice(2);
+gitnore.init(values);
+
