@@ -38,8 +38,8 @@ This project makes HTTP requests to this repo to fetch the desired .gitignore co
 - VisualStudioCode
 - Python
 - Java
-- JetBrains (inside the Global folder)
-- Phoenix (inside the community/Elixir folders)
+- JetBrains (inside the Global/ folder)
+- Phoenix (inside the community/Elixir/ folders)
 
 ## Contributing
 
