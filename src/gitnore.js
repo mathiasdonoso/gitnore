@@ -1,56 +1,87 @@
 #! /usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
-const filesFolder = path.join(__dirname, '../assets/gitignorefiles/');
 
-const log = console.log;
+import { createWriteStream } from 'fs';
 
-const gitignoreFileName = `.gitignore`;
+const GIT_IGNORE_FILE_NAME = `.gitignore`;
+const DOC_TEXT = 'Checkout the available options at https://github.com/mathiasdonoso/gitnore#readme';
 
-const init = (args) => {
-  if (args.length > 0) {
-    const writeStream = fs.createWriteStream(gitignoreFileName);
+/**
+  * @param {string[]} args
+  */
+async function init(args) {
+  if (args.length === 0) {
+    console.warn(`You need to specify which gitignore file want to be created. ${DOC_TEXT}`)
+    return;
+  }
 
-    try {
-      args.forEach((file) => {
-        writeStream.write(`\n${getContentFrom(file)}`);
-      });
+  let content = '';
+  for (let file of args) {
+    let text = await getContentFor(file);
 
-      log(chalk.green('.gitignore file created successfully'));
-    } catch (error) {
-      clear();
-      log(chalk.red(error));
-    } finally {
+    if (text !== '') {
+      content += `${text}\n`;
+      console.info(`Obtained .gitignore info for ${file}.`)
+    } else {
+      console.warn(`Couldn't found .gitignore info for ${file}. The filename must match the one located in https://github.com/github/gitignore`)
+    }
+  }
+
+  if (content === '') {
+    console.warn(`Couldn't create an empty .gitignore file.`)
+    return
+  }
+
+  const writeStream = createWriteStream(GIT_IGNORE_FILE_NAME, { encoding: 'utf8' });
+  writeStream.write(`${content}`, function(err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.info(`Added .gitignore file.`)
       writeStream.end();
     }
-  } else {
-    log(
-      chalk.yellow(
-        'You need to specify which gitignore file want to be created. checkout the available options at https://github.com/mathiasdonoso/gitnore#readme'
-      )
-    );
-  }
-};
+  });
+}
 
-const getContentFrom = (filename) => {
-  filename = filename.toLowerCase();
+const URLS = [
+  'https://raw.githubusercontent.com/github/gitignore/main',
+  'https://raw.githubusercontent.com/github/gitignore/main/Global',
+  'https://raw.githubusercontent.com/github/gitignore/main/community',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/AWS',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Dotnet',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Elixir',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/GNOME',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Golang',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Java',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Javascript',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Linux',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/PHP',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/Python',
+  'https://raw.githubusercontent.com/github/gitignore/main/community/embedded',
+];
 
+/**
+  * @param {string} filename
+  * @returns {Promise<string>}
+  */
+async function getContentFor(filename) {
   try {
-    const data = fs.readFileSync(`${filesFolder}${filename}.gitignore`);
+    for (let baseUrl of URLS) {
+      const endpoint = `${baseUrl}/${filename}.gitignore`;
+      const response = await fetch(endpoint);
+      if (response.status !== 200) {
+        continue;
+      }
 
-    return data;
-  } catch (error) {
-    throw new Error(
-      `There is no gitignore file available for "${filename}", checkout the available options at https://github.com/mathiasdonoso/gitnore#readme`
-    );
+      const text = await response.text();
+      return text;
+    }
+
+    return '';
+  } catch (err) {
+    throw new Error(err);
   }
-};
+}
 
-const clear = () => {
-  fs.unlinkSync(gitignoreFileName);
-};
-
-module.exports = {
+export default {
   init,
 };
