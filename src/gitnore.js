@@ -1,11 +1,17 @@
 #! /usr/bin/env node
 
-import { readFileSync, writeFile } from 'fs';
-import { readdirSync } from 'node:fs';
+import { readFileSync, writeFile } from "fs";
+import { readdirSync } from "node:fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 const GITIGNORE_FILENAME = `.gitignore`;
-const DOC_TEXT = 'Checkout the available options at https://github.com/mathiasdonoso/gitnore#readme';
-const GITIGNORE_FOLDER_PATH = './vendor/gitignore/';
+const DOC_TEXT = "Checkout the available options at https://github.com/mathiasdonoso/gitnore#readme";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const projectRoot = dirname(__dirname);
+const GITIGNORE_FOLDER_PATH = join(projectRoot, "vendor", "gitignore");
 
 /**
   * @param {string[]} args
@@ -16,11 +22,11 @@ async function init(args) {
     return;
   }
 
-  let content = '';
+  let content = "";
   for (let file of args) {
     let text = await getContentFor(file);
 
-    if (text !== '') {
+    if (text !== "") {
       content += `${text}\n`;
       console.info(`Obtained .gitignore info for ${file}.`);
     } else {
@@ -28,7 +34,7 @@ async function init(args) {
     }
   }
 
-  if (content === '') {
+  if (content === "") {
     console.warn(`Couldn't create an empty .gitignore file.`);
     return;
   }
@@ -51,10 +57,10 @@ async function getContentFor(filename) {
     /**
      * @type {string[]}
     */
-    const files = readdirSync(GITIGNORE_FOLDER_PATH, { recursive: true }).filter(file => file.includes('.gitignore'));
+    const files = readdirSync(GITIGNORE_FOLDER_PATH, { recursive: true }).filter(file => file.includes(".gitignore"));
 
     const file = files.find(f => {
-      const lastSlash = f.lastIndexOf('/');
+      const lastSlash = f.lastIndexOf("/");
       let fileRenamed = f;
       if (lastSlash > -1) {
         fileRenamed = f.substring(lastSlash + 1, f.length);
@@ -63,9 +69,9 @@ async function getContentFor(filename) {
       return fileRenamed.toLowerCase() === `${filename.toLowerCase()}.gitignore`;
     });
 
-    if (!file) return '';
+    if (!file) return "";
 
-    return readFileSync(`${GITIGNORE_FOLDER_PATH}/${file}`, 'utf8');
+    return readFileSync(`${GITIGNORE_FOLDER_PATH}/${file}`, "utf8");
   } catch (err) {
     throw new Error(err);
   }

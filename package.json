@@ -1,6 +1,6 @@
 {
   "name": "gitnore",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": ".gitignore file generator",
   "main": "index.js",
   "type": "module",
@@ -14,6 +14,11 @@
     "gitignore",
     "generator",
     "util"
+  ],
+  "files": [
+    "index.js",
+    "src/",
+    "vendor/gitignore/"
   ],
   "bin": {
     "gitnore": "index.js"
